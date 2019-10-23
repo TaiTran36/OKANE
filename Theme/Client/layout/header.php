@@ -73,11 +73,11 @@
 		    		</div>
 		    	</div>
 		     	<div class="w3-panel w3-margin w3-padding-32" id="form_login">
-		     		<form action="/action_page.php" method="post">
+		     		
 		     			<div id="list_form">
 		     				<?php include('login/login_student.php'); ?>
 		     			</div>
-					</form>
+					
 		     	</div>
 		    </div>
 

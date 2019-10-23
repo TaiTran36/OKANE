@@ -16,7 +16,7 @@
 			<img src="../../img/partner/fpt.jpg" class="w3-image w3-border w3-hover-shadow" style="height: 150px;width: 100%;">
 		</div>
 		<div class="w3-quarter w3-padding">
-			<img src="../../img/partner/porn.png" class="w3-image w3-border w3-hover-shadow" style="height: 150px;width: 100%;">
+			<img src="../../img/partner/inno.png" class="w3-image w3-border w3-hover-shadow" style="height: 150px;width: 100%;">
 		</div>
 	</div>
 </div>
