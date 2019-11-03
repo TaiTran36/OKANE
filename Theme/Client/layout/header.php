@@ -73,20 +73,16 @@
 		    		</div>
 		    	</div>
 		     	<div class="w3-panel w3-margin w3-padding-32" id="form_login">
-		     		
+		     		    <div id="error" class="w3-margin w3-padding-small" >
+
+                        </div>
 		     			<div id="list_form">
 		     				<?php include('login/login_student.php'); ?>
 		     			</div>
 					
 		     	</div>
 		    </div>
-
-		    <div class="w3-container">
-		    	<div class="w3-panel w3-center">
-		    		<input type="submit" class="w3-button w3-green w3-margin-right" value="Đăng nhập"><span class="psw">Forgot <a href="#">password?</a></span>
-		    	</div>
-		      
-		    </div>
+		   
 		  </div>
 		</div>
 	</div>
