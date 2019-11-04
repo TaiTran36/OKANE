@@ -47,6 +47,9 @@ if (isset($_POST['login']))
         }
 
     else {
+       // $q1 = mysqli_query($conn,"SELECT * FROM intern_students WHERE student_code='$username'");
+        //$r = mysqli_num_rows($q1);
+        //var_dump($q1);
         $_SESSION['username'] = $username;
         header('Content-Type: application/json');
         echo json_encode("success");

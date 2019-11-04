@@ -33,17 +33,18 @@ $(document).ready(function() {
         dots[slideIndex-1].className += " active";
         setTimeout(showSlides, 5000);
     }
-	var modal = document.getElementById('id01');
+	var modal1 = document.getElementById('id01');
 
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-		if (event.target == modal) {
+		if (event.target == modal1) {
             $('.list_err').remove();
             $('.input_name').val("");
             $('.input_pass').val("");
-			modal.style.display = "none";
+			modal1.style.display = "none";
 
 		}
+
 	}
 	//Display form login
 	$('#sv').click(function(){
@@ -139,4 +140,5 @@ $(document).ready(function() {
 			}
 		});
 	});
+
 });
