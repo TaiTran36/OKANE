@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=UTF-8');
 if (isset($_POST['login']))
 {
     $servername = "localhost";
-    $database = "db_web";
+    $database = "demodb";
     $username = "root";
     $password = "";
     $conn = mysqli_connect($servername, $username, $password, $database);
