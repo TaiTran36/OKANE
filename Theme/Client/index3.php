@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,12 +36,12 @@
 	  							<div class="w3-quarter ">
 	  								<img src="../../img/slide/Slide3-0.jpg" style="width:65%;height: 40px" class=" w3-right w3-round-xxlarge">
 	  							</div>
-	  							<div class="w3-threequarter w3-padding w3-text-white">Trần Thanh Tài 
+	  							<div class="w3-threequarter w3-padding w3-text-white"><?php echo $_SESSION['full_name'] ?>
 	  								<div class="w3-dropdown-click w3-right">
  										<span class="glyphicon glyphicon-triangle-bottom " onclick="myFunction()"></span>
 									  <div id="list" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
 									    <a href="" class="w3-bar-item w3-button">Profile</a>
-									    <a href="" class="w3-bar-item w3-button">Logout</a>
+									    <a href="action_logout.php" class="w3-bar-item w3-button">Logout</a>
 									  </div>
 									</div>
 	  							</div>
@@ -57,7 +60,7 @@
 						<div class="w3-quarter">
   							<img src="../../img/slide/Slide3-0.jpg" style="width:75%;height: 40px" class=" w3-right w3-round-xxlarge">
   							</div>
-  							<div class="w3-threequarter w3-padding ">Trần Thanh Tài</div>
+  							<div class="w3-threequarter w3-padding "><?php echo $_SESSION['full_name'] ?></div>
 					</div>
 					
 					<div class="w3-grey w3-serif w3-large w3-light-grey w3-round w3-margin">
