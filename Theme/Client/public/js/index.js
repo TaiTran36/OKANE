@@ -109,12 +109,12 @@ $(document).ready(function() {
         }
         if(action == 'tea'){
             url = 'login/action_login_teacher.php';
-            red = 'index2.php';
+            red = 'index3.php';
             err = 'Mã giáo viên';
         }
         if(action == 'comp'){
             url = 'login/action_login_company.php';
-            red = 'index3.php';
+            red = 'index2.php';
             err = 'Mã số thuế';
         }
 		$.ajax({
