@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
+    header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +44,7 @@ session_start();
 									<span class="glyphicon glyphicon-triangle-bottom " onclick="myFunction()"></span>
 									 <div id="list" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
 									    <a href="" class="w3-bar-item w3-button">Profile</a>
-									    <a href="action_logout.php" class="w3-bar-item w3-button">Logout</a>
+									    <a href="../../server/logout/logout.php" class="w3-bar-item w3-button">Logout</a>
 									 </div>
 								</div>
 	  							</div>
