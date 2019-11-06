@@ -103,18 +103,18 @@ $(document).ready(function() {
         var red = "";
         var err = "";
         if(action == 'stu'){
-            url = 'login/action_login_student.php';
-            red = 'index1.php';
+            url = '../../server/login/action_login_student.php';
+            red = 'student.php';
             err = 'Mã sinh viên';
         }
         if(action == 'tea'){
-            url = 'login/action_login_teacher.php';
-            red = 'index3.php';
+            url = '../../server/login/action_login_teacher.php';
+            red = 'teacher.php';
             err = 'Mã giáo viên';
         }
         if(action == 'comp'){
-            url = 'login/action_login_company.php';
-            red = 'index2.php';
+            url = '../../server/login/action_login_company.php';
+            red = 'company.php';
             err = 'Mã số thuế';
         }
 		$.ajax({
