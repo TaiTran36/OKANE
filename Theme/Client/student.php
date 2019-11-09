@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == NULL){
+if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
     header('Location: index.php');
 }
 ?>
@@ -20,6 +20,7 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
 		.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 		.w3-menu{position: fixed !important;}
 		footer{background-color: #242424}
+        a{text-decoration: none !important}
     </style>
 </head>
 <body>
@@ -30,6 +31,9 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
 			  	<div class="w3-row">
 			  		<div class="w3-col w3-padding w3-green " style="width:20%"><a href="#" class="w3-bar-item w3-button w3-hide-small w3-large w3-hover-none w3-hover-text-white" ><b>OKANE - Student</b></a></div>
 	  				<div class="w3-col w3-padding" style="width:80%">
+                        <div class="w3-left w3-padding">
+                            <span class="glyphicon glyphicon-home w3-text-white"></span><a href="index.php" class="w3-text-white"><span class="w3-margin-left">HOMEPAGE</span></a>
+                        </div>
 	  					<div class="w3-right w3-third ">
 	  						<div class="w3-quarter w3-padding">
 	  							<i class="fas fa-bell w3-text-white"></i>
@@ -40,13 +44,14 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
 	  								<img src="../../img/slide/Slide3-0.jpg" style="width:65%;height: 40px" class=" w3-right w3-round-xxlarge">
 	  							</div>
 	  							<div class="w3-threequarter w3-padding w3-text-white"><?php echo $_SESSION['full_name'] ?>
+                                   
 	  								<div class="w3-dropdown-click w3-right">
-									<span class="glyphicon glyphicon-triangle-bottom " onclick="myFunction()"></span>
-									 <div id="list" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
-									    <a href="" class="w3-bar-item w3-button">Profile</a>
-									    <a href="../../server/logout/logout.php" class="w3-bar-item w3-button">Logout</a>
-									 </div>
-								</div>
+    									<span class="glyphicon glyphicon-triangle-bottom " onclick="myFunction()"></span>
+    									 <div id="list" class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
+    									    <a href="" class="w3-bar-item w3-button">Profile</a>
+    									    <a href="../../server/logout/logout.php" class="w3-bar-item w3-button">Logout</a>
+    									 </div>
+								    </div>
 	  							</div>
 	  						</div>
 	  					</div>

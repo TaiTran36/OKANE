@@ -39,7 +39,7 @@ if (isset($_POST['login']))
     }
     else {
 
-        //$_SESSION['username'] = $username;
+        $_SESSION['user'] = 'company';
         header('Content-Type: application/json');
         echo json_encode("success");
         $user_infor = $connect->query("Select organization_name from intern_organization_profile WHERE  tax_number = '$username'");

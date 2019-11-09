@@ -39,7 +39,7 @@ if (isset($_POST['login']))
     }
     else {
 
-        //$_SESSION['username'] = $username;
+        $_SESSION['user'] = 'student';
         header('Content-Type: application/json');
         echo json_encode("success");
         $user_infor = $connect->query("Select full_name from intern_students WHERE  student_code = '$username'");
