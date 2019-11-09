@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
+if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == NULL){
     header('Location: index.php');
 }
 ?>
@@ -20,6 +20,7 @@ if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
 		.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 		.w3-menu{position: fixed !important;}
 		footer{background-color: #242424}
+		a{text-decoration: none !important}
     </style>
 </head>
 <body>
@@ -30,6 +31,9 @@ if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
 			  	<div class="w3-row">
 			  		<div class="w3-col w3-padding w3-blue " style="width:20%"><a href="#" class="w3-bar-item w3-button w3-hide-small w3-large w3-hover-none w3-hover-text-white" ><b>OKANE - Company</b></a></div>
 	  				<div class="w3-col w3-padding" style="width:80%">
+	  					<div class="w3-left w3-padding">
+                            <span class="glyphicon glyphicon-home w3-text-white"></span><a href="index.php" class="w3-text-white"><span class="w3-margin-left">HOMEPAGE</span></a>
+                        </div>
 	  					<div class="w3-right w3-third ">
 	  						<div class="w3-quarter w3-padding">
 	  							<i class="fas fa-bell w3-text-white"></i>
