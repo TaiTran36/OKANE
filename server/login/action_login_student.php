@@ -1,4 +1,5 @@
 <?php
+include '../Connection.php';
 /**
  * Created by PhpStorm.
  * User: Asus
@@ -13,43 +14,42 @@ header('Content-Type: text/html; charset=UTF-8');
 //Xử lý đăng nhập
 if (isset($_POST['login']))
 {
-    $servername = "localhost";
-    $database = "db_web";
-    $username = "root";
-    $password = "";
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    mysqli_query($conn,"SET NAMES 'UTF8'");
+    $conn = new Connection();
+    $connect = $conn->Conn();
 
     $username = addslashes($_POST['username']);
     $password = addslashes($_POST['pass']);
 
-
-
     // mã hóa pasword
 //    $password = md5($password);
-
     //Kiểm tra tên đăng nhập có tồn tại không
-    $query = mysqli_query($conn,"SELECT student_code FROM intern_students WHERE student_code='$username'");
+    $query = $connect->query("SELECT student_code FROM intern_students WHERE student_code='$username'");
 
     $row = mysqli_fetch_array($query);
     if (!$query || mysqli_num_rows($query) == 0) {
+
         header('Content-Type: application/json');
         echo json_encode("error_name");
-
-
     }
-        //Lấy mật khẩu trong database ra
+    //Lấy mật khẩu trong database ra
 
-     else if ($password != $row['student_code']) {
-         header('Content-Type: application/json');
-         echo json_encode("error_pass");
-
-        }
-
+    else if ($password != $row['student_code']) {
+        header('Content-Type: application/json');
+        echo json_encode("error_pass");
+    }
     else {
-        $_SESSION['username'] = $username;
+
+        $_SESSION['user'] = 'student';
         header('Content-Type: application/json');
         echo json_encode("success");
+        $user_infor = $connect->query("Select full_name from intern_students WHERE  student_code = '$username'");
+        if (mysqli_num_rows($user_infor) > 0)
+        {
+            // Sử dụng vòng lặp while để lặp kết quả
+            while($row = mysqli_fetch_assoc($user_infor)) {
+                $_SESSION['full_name'] = $row['full_name'];
+            }
+        }
     }
     exit();
 }

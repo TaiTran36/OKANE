@@ -13,6 +13,7 @@
 		.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 		.w3-icon-user{font-size: 100px !important;}
 		footer{background-color: #242424}
+		a{text-decoration: none !important}
     </style>
 </head>
 <body>
