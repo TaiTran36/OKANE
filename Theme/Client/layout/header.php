@@ -22,7 +22,7 @@ session_start();
 			    		if(isset($_SESSION['full_name']) && $_SESSION['full_name'] != NULL){
 			    	
 			    			if(isset($_SESSION['user'])){
-			    			 	$url = $_SESSION['user'].'.php';
+			    			 	$url = $_SESSION['user'].'/'.$_SESSION['user'].'.php';
 			    			}
 			    			echo '<div class="w3-col w3-margin-right " style="width:45%">',
 			    			'<div class="w3-border w3-round-xxlarge w3-hover-shadow">',
