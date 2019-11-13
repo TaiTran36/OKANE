@@ -8,7 +8,7 @@ $list_request = "SELECT intern_organization_requests.*, intern_organization_prof
                     LEFT JOIN intern_student_register ON intern_organization_requests.id = intern_student_register.request_id)
                     WHERE intern_organization_requests.status = '3000' OR intern_organization_requests.status = '4000'
                     GROUP BY intern_organization_requests.id
-                    ORDER BY intern_organization_requests.date_submitted DESC 
+                    ORDER BY intern_organization_requests.status ASC, intern_organization_requests.date_submitted DESC 
                     ";
 $list = $conn->getData($list_request);
 ?>
@@ -32,8 +32,14 @@ $list = $conn->getData($list_request);
                 <p>Ngày đăng: <?php echo $item['date_submitted'] ?></p>
             </div>
         </div>
-        <button class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail" >Xem chi tiết
-        </button>
+        <?php if($item['status'] == 3000):?>
+            <button class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail" >Xem chi tiết
+            </button>
+        <?php else :?>
+            <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
+                Hết hạn
+            </div>
+        <?php endif ?>
     </div>
 <?php endforeach; ?>
 
