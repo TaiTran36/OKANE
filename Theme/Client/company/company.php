@@ -34,9 +34,21 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
         <?php include('layout/list_menu.php'); ?>
     </div>
     <div class="w3-col w3-right w3-padding-64 contant" id = "contant" style="width: 80%;height:auto;">
-        <div id="list_job">
-            <?php include('layout/content.php'); ?>
-        </div>
+        <?php
+        if(isset($_REQUEST['detail'])){
+            $detail = $_REQUEST['detail'];
+            if($detail == 'detail_request'){
+                include('detail_request.php');
+            }
+            if($detail == 'registe'){
+                include('registe_student.php');
+            }
+        }else{
+            include('layout/content.php');
+        }
+        ?>
+        <?php include('create_request.php') ?>
+        <?php include('assignment.php') ?>
     </div>
 </section>
 <script>
@@ -48,6 +60,15 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
 		    x.className = x.className.replace(" w3-show", "");
 		  }
 		}
+
+        window.onclick = function(event) {
+            if (event.target == form_regsite) {
+                form_regsite.style.display = "none";
+            }
+            if (event.target == assignment) {
+                assignment.style.display = "none";
+            }
+        }
 </script>
 </body>
 </html>
