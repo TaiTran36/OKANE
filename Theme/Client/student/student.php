@@ -35,9 +35,22 @@ if (!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL) {
         <?php include('layout/list_menu.php'); ?>
     </div>
     <div class="w3-col w3-right w3-padding-64 contant" id = "contant" style="width: 80%;height:auto;">
-        <div id="list_job">
-            <?php include('layout/content.php'); ?>
-        </div>
+        <?php
+            if(isset($_REQUEST['detail'])){
+                $detail = $_REQUEST['detail'];
+                if($detail == 'detail_request'){
+                    include('list_detail.php');
+                }
+                if($detail == 'registe'){
+                    include('registe_student.php');
+                }
+            }else{
+                include('layout/content.php');
+            }
+        ?>
+
+
+
     </div>
 </section>
 <script>
@@ -57,16 +70,20 @@ if (!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL) {
 
         }
     }
-    $('.btn_detail').click(function () {
-        $('#list_job').remove();
-        $.ajax({
-            url: '../student/list_detail.php',
-            success: function(html) {
-                $("#contant").append(html);
-            }
-        });
-
-    })
+    // $('.btn_detail').click(function (e) {
+    //     var id = $(this).val();
+    //     $('#list_job').remove();
+    //     $.ajax({
+    //         url: '../student/list_detail.php',
+    //         data:{
+    //             id:id
+    //         },
+    //         success: function(html) {
+    //             $("#contant").append(html);
+    //         }
+    //     });
+    //
+    // })
     $('#btn_register_job').click(function () {
         document.getElementById('id02').style.display = "none";
         $('#list_job').css('display', 'none');
