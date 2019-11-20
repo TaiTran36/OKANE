@@ -42,13 +42,14 @@ if (isset($_POST['login']))
         $_SESSION['user'] = 'company';
         header('Content-Type: application/json');
         echo json_encode("success");
-        $user_infor = $connect->query("Select organization_name, id from intern_organization_profile WHERE  tax_number = '$username'");
+        $user_infor = $connect->query("Select organization_name, id,logo from intern_organization_profile WHERE  tax_number = '$username'");
         if (mysqli_num_rows($user_infor) > 0)
         {
             // Sử dụng vòng lặp while để lặp kết quả
             while($row = mysqli_fetch_assoc($user_infor)) {
                 $_SESSION['organization_name'] = $row['organization_name'];
                 $_SESSION['organ_id'] = $row['id'];
+                $_SESSION['organ_logo'] = $row['logo'];
             }
         }
     }

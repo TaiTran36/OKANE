@@ -46,7 +46,7 @@ $list = $conn->getData($list_request);
             <a href="company.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
             </a>
         <?php else :?>
-            <a href="company.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
+            <a href="company.php?detail=detail_request_expired&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
             </a>
             <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
                 Hết hạn
