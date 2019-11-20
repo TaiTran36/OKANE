@@ -22,7 +22,7 @@ $result        = $conn->getData($organ_request);
 ?>
 
 <?php foreach ($result as $item) : ?>
-    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:500px">
+    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:550px">
         <h2 class="w3-center">PHIẾU TUYỂN DỤNG</h2>
 
         <div class="w3-padding">
@@ -38,21 +38,27 @@ $result        = $conn->getData($organ_request);
                     <h3><?php echo $item['organization_name'] ?></h3>
                     <label>Số lượng sinh viên đã đăng kí: <?php echo $item['count_stu_res'] ?> </label> <br/>
                     <br/>
-
-                    <label>Tuyển vị trí: </label>
-                    <input type="text" name="organ_request_position" value="<?php echo $item['organ_request_position'] ?>"><br/>
-                    <label>Số lượng tuyển: </label>
-                    <input type="text" name="organ_request_amount" value="<?php echo $item['organ_request_amount'] ?>"><br/>
-                    <label>Mức lương: </label>
-                    <input type="text" name="organ_request_salary" value="<?php echo $item['organ_request_salary'] ?>"><br/>
+                    <div class="w3-row w3-display-container w3-margin-bottom">
+                        <label class="w3-col m4 w3-display-left">Tuyển vị trí: </label>
+                        <input class="w3-input w3-col m4 w3-display-middle" style="width: 40%" type="text" name="organ_request_position" value="<?php echo $item['organ_request_position'] ?>"><br/>
+                    </div>
+                    <div class="w3-row w3-display-container w3-margin-bottom">
+                        <label class="w3-col m4 w3-display-left">Số lượng tuyển: </label>
+                        <input class="w3-input w3-col m4 w3-display-middle" style="width: 40%" type="text" name="organ_request_amount" value="<?php echo $item['organ_request_amount'] ?>"><br/>
+                    </div>
+                    <div class="w3-row w3-display-container w3-margin-bottom">
+                        <label class="w3-col m4 w3-display-left">Mức lương: </label>
+                        <input class="w3-input w3-col m4 w3-display-middle" style="width: 40%" type="text" name="organ_request_salary" value="<?php echo $item['organ_request_salary'] ?>"><br/>
+                    </div>
                     <input type="hidden" name="organ_request_status" value="2000">
                     <label>Ngày đăng: <?php echo date_format(new DateTime($item['organ_request_date_submitted']), "d/m/Y"); ?></label><br/>
-                    <label>Yêu cầu năng lực: </label>
-                    <button type="button" id="add_ability" class="w3-btn w3-green w3-tiny" onclick="">+</button><br />
-<!--                    <ul class="list_ability">-->
+                    <div class="w3-row w3-display-container " style="margin-bottom: 30px">
+                        <label class="w3-col m3">Yêu cầu năng lực: </label><button type="button" id="add_ability" class="w3-btn w3-green w3-tiny w3-col-m2" onclick="">+</button><br />
+                    </div>
+                    <div class="w3-row w3-margin-bottom">
                         <?php foreach ($ability_result as $temp) : ?>
                             <!--                            <li class="w3-margin">-->
-                            <select name="ability_id">
+                            <select name="ability_id" class="w3-input w3-col m3 w3-margin">
                                 <?php foreach ($abilities as $abi) : ?>
                                         <option
                                                 <?php if ($abi['id'] == $temp['ability_id']) : ?>
@@ -62,12 +68,11 @@ $result        = $conn->getData($organ_request);
                                         </option>
                                     <?php endforeach; ?>
                             </select>
-                            <input type="text" name="ability_required" value="<?php echo $temp['ability_required'] ?>">
-                            <input type="text" name="note" value="<?php echo $temp['note'] ?>">
-                            <button type="button" id="delete_ability" class="w3-btn w3-red w3-tiny" onclick="">-</button>
-                            <!--                            </li>-->
+                            <input type="text" class="w3-input w3-col m1 w3-margin" name="ability_required" value="<?php echo $temp['ability_required'] ?>">
+                            <input type="text" class="w3-input w3-col m4 w3-margin" name="note" value="<?php echo $temp['note'] ?>">
+                            <button type="button" id="delete_ability" class="w3-btn w3-red w3-tiny w3-col m1 w3-margin" onclick="">-</button>
+                    </div
                         <?php endforeach; ?>
-<!--                    </ul>-->
                 </div>
                 <div class="w3-display-bottommiddle">
                     <button type="submit" class="w3-btn w3-green w3-margin-bottom btn_update"
