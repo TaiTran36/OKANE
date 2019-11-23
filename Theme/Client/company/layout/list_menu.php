@@ -13,7 +13,7 @@
             <div class="w3-padding-large w3-hover-grey">
                 <span class="glyphicon glyphicon-dashboard"></span> Dashboard
             </div>
-            <a href="javascript:void(0)" class="w3-text-black" onclick="document.getElementById('form_regsite').style.display='block'">
+            <a href="company.php?detail=create_request" class="w3-text-black" >
                 <div class="w3-padding-large w3-hover-grey">
                     <i class="far fa-file-alt w3-margin-right"></i> Tạo phiếu
                 </div>
