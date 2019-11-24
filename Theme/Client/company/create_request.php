@@ -9,10 +9,10 @@ $abilities = $conn->getData($abilities);
     <h2 class="w3-center">TẠO PHIẾU TUYỂN DỤNG</h2>
     <div class="w3-padding">
         <div class="w3-panel w3-margin">
-            <form id="form_update_organ_request">
+            <form id="form_update_organ_request" action="../../../server/organ_request/action_create_organ_request.php" method="POST">
                 <div class=" w3-padding">
                     <p class="w3-xlarge"><b><?php echo $_SESSION['organization_name'] ?></b></p>
-                    <input type="hidden" class="organ_id" value="<?php echo $_SESSION['organ_id']?>">
+                    <input type="hidden" class="organ_id" name="organization_id" value="<?php echo $_SESSION['organ_id']?>">
                     <p class="w3-xlarge"><b></b></p>
                     <label class="w3-large">Tuyển vị trí: </label>
                     <input class="w3-input organ_request_position" type="text" name="organ_request_position" value=""><br/>
@@ -21,11 +21,11 @@ $abilities = $conn->getData($abilities);
                     <label class="w3-large">Mức lương: </label>
                     <input class="w3-input organ_request_salary" type="text" name="organ_request_salary" value=""><br/>
                     <?php
-                    $date=getdate(date("U"));
-                    $current_date = "$date[mday]-$date[mon]-$date[year]";
+                        $date=getdate(date("U"));
+                        $current_date = "$date[mday]-$date[mon]-$date[year]";
                     ?>
-                    <input type="hidden" class="date" value="<?php echo $current_date?>">
-                    <input type="hidden" class="status" value="1000">
+                    <input type="hidden" class="date" name="organ_request_date_submitted" value="<?php echo $current_date?>">
+                    <input type="hidden" class="status" name="organ_request_status" value="1000">
                     <label class="w3-large">Yêu cầu năng lực: </label>
                     <!--                    Tạo button thêm và xoá-->
                     <div class="w3-right">
@@ -36,7 +36,7 @@ $abilities = $conn->getData($abilities);
                     </div>
                     <!--                    Hiển thị danh sách các yêu cầu năng lực-->
                     <ul class="list_ability">
-
+                        <input type="hidden" class="abilities" name="abilities" value="">
                     </ul>
                     <br>
                     <!--                    action chọn các loại năng lực-->
@@ -99,7 +99,7 @@ $abilities = $conn->getData($abilities);
                     </div>
                 </div>
                 <div class="w3-display-bottommiddle">
-                    <button  type="submit" class="w3-btn w3-green w3-margin-bottom">Tạo phiếu</button>
+                    <button  type="submit" class="w3-btn w3-green w3-margin-bottom" name="create_request" value="create_request">Tạo phiếu</button>
                 </div>
             </form>
         </div>
@@ -131,6 +131,7 @@ $abilities = $conn->getData($abilities);
                         for (var i=0;i<j.length;i++){
                             j[i].parentNode.parentNode.remove();
                         }
+                        $('input.abilities').val(list_ability);
                         console.log(list_ability);
                     }
                 }
@@ -157,39 +158,40 @@ $abilities = $conn->getData($abilities);
                     var el = new Array();
                     el.push(count,ability_id,ability_required,ability_note);
                     list_ability.push(el);
+                    $('input.abilities').val(list_ability);
                     console.log(list_ability);
                 }
             })
         }
-        $('.create_request').submit(function (e) {
-            e.preventDefault();
-            var organization_id = $('.organ_id').val();
-            var organ_request_position = $('.organ_request_position').val();
-            var organ_request_amount = $('.organ_request_amount').val();
-            var organ_request_salary = $('.organ_request_salary').val();
-            var organ_request_date_submitted = $('.date').val();
-            var organ_request_status = $('.status').val();
-            var url = '../../../server/organ_request/action_create_organ_request.php';
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    create_request: 'create_request',
-                    organization_id:organization_id,
-                    organ_request_position:organ_request_position,
-                    organ_request_amount:organ_request_amount,
-                    organ_request_salary:organ_request_salary,
-                    organ_request_date_submitted:organ_request_date_submitted,
-                    organ_request_status:organ_request_status,
-                    list_ability:list_ability
-                },
-                success: function (response) {
-                    if (response == "success") {
-                        window.location.reload();
-                        alert("Phiếu yêu cầu đã được tạo");
-                    }
-                }
-            });
-        });
+        // $('.create_request').submit(function (e) {
+        //     e.preventDefault();
+        //     var organization_id = $('.organ_id').val();
+        //     var organ_request_position = $('.organ_request_position').val();
+        //     var organ_request_amount = $('.organ_request_amount').val();
+        //     var organ_request_salary = $('.organ_request_salary').val();
+        //     var organ_request_date_submitted = $('.date').val();
+        //     var organ_request_status = $('.status').val();
+        //     var url = '../../../server/organ_request/action_create_organ_request.php';
+        //     $.ajax({
+        //         url: url,
+        //         type: 'POST',
+        //         data: {
+        //             create_request: 'create_request',
+        //             organization_id:organization_id,
+        //             organ_request_position:organ_request_position,
+        //             organ_request_amount:organ_request_amount,
+        //             organ_request_salary:organ_request_salary,
+        //             organ_request_date_submitted:organ_request_date_submitted,
+        //             organ_request_status:organ_request_status,
+        //             list_ability:list_ability
+        //         },
+        //         success: function (response) {
+        //             if (response == "success") {
+        //                 window.location.reload();
+        //                 alert("Phiếu yêu cầu đã được tạo");
+        //             }
+        //         }
+        //     });
+        // });
     });
 </script>
