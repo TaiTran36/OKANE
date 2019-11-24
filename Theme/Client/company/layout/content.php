@@ -43,6 +43,20 @@ $list = $conn->getData($list_request);
 
         </div>
         <?php if($item['organ_request_status'] <= 3000):?>
+            <?php if($item['organ_request_status'] === 1000):?>
+                <div class="w3-display-topright w3-panel w3-yellow w3-margin w3-round w3-padding">
+                    Đang soạn
+                </div>
+            <?elseif ($item['organ_request_status'] === 2000):?>
+                <div class="w3-display-topright w3-panel w3-indigo w3-margin w3-round w3-padding">
+                    Chờ kiểm duyệt
+                </div>
+            <?php else:?>
+                <div class="w3-display-topright w3-panel w3-indigo w3-margin w3-round w3-padding">
+                    Sinh viên đăng kí
+                </div>
+            <?php endif;?>
+
             <a href="company.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
             </a>
         <?php else :?>
