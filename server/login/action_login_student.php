@@ -42,12 +42,13 @@ if (isset($_POST['login']))
         $_SESSION['user'] = 'student';
         header('Content-Type: application/json');
         echo json_encode("success");
-        $user_infor = $connect->query("Select full_name from intern_students WHERE  student_code = '$username'");
+        $user_infor = $connect->query("Select full_name,id from intern_students WHERE  student_code = '$username'");
         if (mysqli_num_rows($user_infor) > 0)
         {
             // Sử dụng vòng lặp while để lặp kết quả
             while($row = mysqli_fetch_assoc($user_infor)) {
                 $_SESSION['full_name'] = $row['full_name'];
+                $_SESSION['id_student'] = $row['id'];
             }
         }
     }

@@ -104,17 +104,17 @@ $(document).ready(function() {
         var err = "";
         if(action == 'stu'){
             url = '../../server/login/action_login_student.php';
-            red = 'student.php';
+            red = 'student/student.php';
             err = 'Mã sinh viên';
         }
         if(action == 'tea'){
             url = '../../server/login/action_login_teacher.php';
-            red = 'teacher.php';
+            red = 'teacher/teacher.php';
             err = 'Mã giáo viên';
         }
         if(action == 'comp'){
             url = '../../server/login/action_login_company.php';
-            red = 'company.php';
+            red = 'company/company.php';
             err = 'Mã số thuế';
         }
 		$.ajax({
