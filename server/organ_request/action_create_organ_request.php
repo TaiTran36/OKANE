@@ -15,7 +15,7 @@ if(isset($_POST['create_request'])) {
 
     //insert request
     $sql_request = "INSERT INTO intern_organization_requests (organization_id, organ_request_position, organ_request_amount,organ_request_salary,organ_request_date_submitted,organ_request_status)
-                VALUES ('$organization_id', '$organ_request_position', '$organ_request_amount', '$organ_request_salary','$organ_request_date_submitted','$organ_request_status')";
+                VALUES ('$organization_id', '$organ_request_position', '$organ_request_amount', '$organ_request_salary',STR_TO_DATE('$organ_request_date_submitted', '%d-%m-%Y'),'$organ_request_status')";
     $request_id = null;
     $result = "";
     if ($connect->query($sql_request)) {

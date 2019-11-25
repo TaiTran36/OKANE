@@ -22,6 +22,7 @@ $list_request = "SELECT intern_organization_requests.*, intern_organization_prof
                     ";
 $list = $conn->getData($list_request);
 ?>
+
 <?php foreach ($list as $item) : ?>
     <div class="w3-padding  w3-margin w3-round w3-card w3-display-container" style="height:350px">
         <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
@@ -43,16 +44,18 @@ $list = $conn->getData($list_request);
 
         </div>
         <?php if($item['organ_request_status'] <= 3000):?>
-            <?php if($item['organ_request_status'] === 1000):?>
-                <div class="w3-display-topright w3-panel w3-yellow w3-margin w3-round w3-padding">
+            <?php if($item['organ_request_status'] == 1000):?>
+                <div class="w3-display-topright w3-panel w3-orange w3-text-white w3-margin w3-round w3-padding">
                     Đang soạn
                 </div>
-            <?elseif ($item['organ_request_status'] === 2000):?>
+            <?php endif;?>
+            <?php if ($item['organ_request_status'] == 2000):?>
                 <div class="w3-display-topright w3-panel w3-indigo w3-margin w3-round w3-padding">
                     Chờ kiểm duyệt
                 </div>
-            <?php else:?>
-                <div class="w3-display-topright w3-panel w3-indigo w3-margin w3-round w3-padding">
+            <?php endif;?>
+            <?php if ($item['organ_request_status'] == 3000):?>
+                <div class="w3-display-topright w3-panel w3-teal w3-text-white w3-margin w3-round w3-padding">
                     Sinh viên đăng kí
                 </div>
             <?php endif;?>
@@ -62,14 +65,17 @@ $list = $conn->getData($list_request);
         <?php else :?>
             <a href="company.php?detail=detail_request_expired&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
             </a>
-            <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
-                Hết hạn
-            </div>
-        <?php endif ?>
+            <?php if($item['organ_request_status'] == 4000):?>
+                <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
+                    Hết hạn
+                </div>
+            <?php endif;?>
+            <?php if($item['organ_request_status'] == 5000):?>
+                <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
+                    Không được kiểm duyệt
+                </div>
+            <?php endif;?>
+        <?php endif; ?>
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
     </div>
 <?php endforeach; ?>
-
-<script>
-
-</script>

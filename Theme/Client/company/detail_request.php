@@ -40,21 +40,24 @@ $result        = $conn->getData($organ_request);
                     <label>Mức lương: </label>
                     <input class="w3-input organ_request_salary" type="text" name="organ_request_salary" value="<?php echo $item['organ_request_salary'] ?>"><br/>
                     <label>Yêu cầu năng lực: </label>
-                    <ul class="list_ability">
+                    <ul class="w3-margin-top w3-margin-bottom list_ability" style="padding: 0">
                         <?php
                         if(isset($ability_result))
                             foreach ($ability_result as $item_ability) : ?>
-                                <li class="w3-margin abilities" data-id="<?php echo $item_ability['id']?>">
-                                    <span class="w3-margin w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span>
-                                    <span class="w3-margin w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span>
-                                    <span class="w3-margin w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span>
-                                    <span class="w3-margin w3-padding w3-round-large w3-hover-shadow w3-red  delete"><a
-                                                href="javascript:void(0)" class="w3-text-white">Xoá</a></span>
+                                <li class="w3-margin-top w3-margin-bottom abilities" data-id="<?php echo $item_ability['id']?>" >
+                                    <div class='w3-col' style='width:37%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
+                                    <div class='w3-col' style='width:23%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
+                                    <div class='w3-col' style='width:37%'><span class="w3-margin-right w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span></div>
+                                    <div class='w3-col' style='width:3%'><span class="w3-margin-right w3-padding w3-round-large w3-hover-shadow w3-red  delete"><a
+                                                    href="javascript:void(0)" class="w3-text-white">Xoá</a></span></div>
                                 </li>
+                                <br>
+                                <br>
                             <?php endforeach; ?>
                     </ul>
                     <br>
-                    <div class="abili" style="height: 70px">
+                    <br>
+                    <div class=" w3-margin-top abili" style="height: 70px">
                         <input type="hidden" class="data_ability" data-id="<?php echo $id?>" data-id_ability="" data_ability_required="" data_ability_name="">
                         <div class="w3-col w3-margin-right" style="width: 30%">
                             <select class="w3-select select_name" name="select_ability">
@@ -75,143 +78,18 @@ $result        = $conn->getData($organ_request);
                                 <span class="w3-margin w3-padding w3-round-large w3-hover-shadow w3-green add"><a
                                             href="javascript:void(0)" class="w3-text-white">Thêm</a></span>
                         </div>
-                        <script>
-                            $("select.select_name").change(function(){
-                                var selectedCate = $(this).children("option:selected").data('name');
-                                var selectedName = $(this).children("option:selected").data('id');
-                                var selectId = $(this).children("option:selected").val();
-                                $('.data_ability').attr("data-id_ability", selectId);
-                                $('.data_ability').attr("data_ability_name", selectedName);
-                                $('option.option').remove();
-                                if(selectedCate === 'Ngôn ngữ lập trình' || selectedCate === 'Môn học CNTT'){
-                                    var select = "<option class='option rank' value='' disabled selected>Đánh giá theo thang 10</option> </br>";
-                                    var j = "";
-                                    for(var i=1;i<11;i++){
-                                        select = select.concat(j,"<option class='option' value='"+i+"'>"+i+"</option></br>");
-                                    }
-                                    $('select.select_rank').append(select);
-                                }
-                                else{
-                                    var select = "<option class='rank' value='' disabled selected>Đánh giá theo chứng chỉ</option> </br>";
-                                    if(selectedName === 'TOEIC'){
-                                        var j = "";
-                                        for(var i=0;i<21;i++){
-                                            if(i==20) select = select.concat(j,"<option class='option' value='"+(i*50-10)+"'>"+(i*50-10)+"</option></br>");
-                                            else
-                                                select = select.concat(j,"<option value='' class='option' value='"+i*50+"'>"+i*50+"</option></br>");
-                                        }
-                                    }else{
-                                        var j = "";
-                                        for(var i=2;i<19;i++){
-                                            select = select.concat(j,"<option value='' class='option' value='"+i*0.5+"'>"+i*0.5+"</option></br>");
-                                        }
-                                    }
-                                    $('select.select_rank').append(select);
-                                }
-                            });
-                            $("select.select_rank").change(function(){
-                                var selectedVal = $(this).children("option:selected").val();
-                                $('.data_ability').attr("data_ability_required", selectedVal);
-                            });
-                        </script>
+                        <script type="text/javascript" src="public/detail_request_change_select_ability.js"></script>
                     </div>
                 </div>
                 <div class="w3-display-bottommiddle">
-                    <button type="submit" class="w3-btn w3-green w3-margin-bottom "
-                    >Cập nhật
-                    </button>
+                    <?php if($item['organ_request_status'] == 1000):?>
+                        <button type="submit" class="w3-btn w3-green w3-margin-bottom status" value="1000">Xét duyệt</button>
+                    <?php else:?>
+                        <button type="submit" class="w3-btn w3-green w3-margin-bottom ">Cập nhật</button>
+                    <?php endif;?>
                 </div>
             </form>
         </div>
     </div>
 <?php endforeach; ?>
-<script>
-    //Tăng chiều cao cho phiếu
-    var $item = $('.request').on('resize', function(){
-        var height = $(this).height() +$('.list_ability').height() + $('.abili').height() +100;
-        $(this).height(height);
-    }).trigger('resize');
-
-    $(document).ready(function () {
-        var add = $('#fieldAdd').html();
-        $('#add_ability').on('click', function () {
-            $('#form-body').append(add);
-        })
-    });
-    $('.delete').click(function (e) {
-        e.preventDefault();
-        if(confirm("Bạn chắc chắn muốn xoá yêu cầu về năng lực?")) {
-            var id_ability = $('.delete').parent().data('id');
-            // $(this).parent().remove();
-            var url = '../../../server/organ_request/action_delete_ability_organ_request.php';
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    delete_ability: 'delete_ability',
-                    id_ability: id_ability
-                },
-                success: function (response) {
-                    if (response == "success") {
-                        window.location.reload();
-                        alert("Yêu cầu năng lực của bạn đã được cập nhập vào hệ thống");
-                    }
-                }
-            });
-        }
-    });
-    $('.add').click(function (e) {
-        e.preventDefault();
-        if(confirm("Bạn chắc chắn muốn thêm yêu cầu về năng lực?")) {
-            var request_id = $('.data_ability').data('id');
-            var ability_id = $('.data_ability').attr('data-id_ability');
-            var ability_required = $('.data_ability').attr('data_ability_required');
-            var ability_note = $('.select_note').val();
-            var url = '../../../server/organ_request/action_add_ability_organ_request.php';
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    add_ability: 'add_ability',
-                    request_id:request_id,
-                    ability_id:ability_id,
-                    ability_require:ability_required,
-                    ability_note:ability_note
-                },
-                success: function (response) {
-                    if (response == "success") {
-                        window.location.reload();
-                        alert("Yêu cầu năng lực của bạn đã được cập nhập vào hệ thống");
-                    }
-                }
-            });
-        }
-    })
-    $('#form_update_organ_request').submit(function(e){
-        e.preventDefault();
-        var request_id = $('.organ_request_id').val();
-        var postion = $('.organ_request_position').val();
-        var amount = $('.organ_request_amount').val();
-        var salary = $('.organ_request_salary').val();
-        url = "../../../server/organ_request/action_update_organ_request.php";
-        $.ajax({
-            url: url,
-            type:'POST',
-            data:{
-                update_request:'update_request',
-                request_id:request_id,
-                postion:postion,
-                amount: amount,
-                salary: salary
-            },
-            success: function(response) {
-                if(response=="success")
-                {
-                    window.location.reload();
-                    alert("Phiếu tuyển dụng của bạn đã được cập nhập vào hệ thống");
-                }
-
-            }
-        });
-    })
-</script>
+<script type="text/javascript" src="public/detail_request_action_update_request.js"></script>
