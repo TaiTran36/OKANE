@@ -21,6 +21,7 @@ if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
 		.w3-menu{position: fixed !important;}
 		footer{background-color: #242424}
 		a{text-decoration: none !important}
+        li{list-style-type: none;}
     </style>
 </head>
 <body>
@@ -35,7 +36,16 @@ if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
     </div>
     <div class="w3-col w3-right w3-padding-64 contant" id = "contant" style="width: 80%;height:auto;">
         <div id="list_job">
-            <?php include('layout/content.php'); ?>
+            <?php
+            if(isset($_REQUEST['detail'])){
+                $detail = $_REQUEST['detail'];
+                if($detail == 'detail_request'){
+                    include('list_detail.php');
+                }
+            }else{
+                include('layout/content.php');
+            }
+            ?>
         </div>
     </div>
 </section>

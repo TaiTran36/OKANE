@@ -8,9 +8,11 @@
         </div>
 
         <div class="w3-grey w3-serif w3-large w3-light-grey w3-round w3-margin">
-            <div class="w3-padding-large w3-hover-grey">
-                <span class="glyphicon glyphicon-dashboard w3-margin-right"></span> Dashboard
-            </div>
+            <a href="teacher.php" class="w3-text-black" >
+                <div class="w3-padding-large w3-hover-grey">
+                    <span class="glyphicon glyphicon-dashboard w3-margin-right"></span> Dashboard
+                </div>
+            </a>
             <div class="w3-padding-large w3-hover-grey">
                 <i class="fas fa-copy w3-margin-right"></i> Danh sách phiếu
             </div>
@@ -19,18 +21,6 @@
             </div>
             <div class="w3-padding-large w3-hover-grey">
                 <i class="fas fa-user-plus w3-margin-right"></i>Thêm sinh viên
-            </div>
-            <div class="w3-padding-large w3-hover-grey">
-                Lorem ipsum
-            </div>
-            <div class="w3-padding-large w3-hover-grey">
-                Lorem ipsum
-            </div>
-            <div class="w3-padding-large w3-hover-grey">
-                Lorem ipsum
-            </div>
-            <div class="w3-padding-large w3-hover-grey">
-                Lorem ipsum
             </div>
         </div>
     </div>
