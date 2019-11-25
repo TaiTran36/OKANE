@@ -10,9 +10,11 @@
         </div>
 
         <div class="w3-grey w3-serif w3-large w3-light-grey w3-round w3-margin">
-            <div class="w3-padding-large w3-hover-grey">
-                <span class="glyphicon glyphicon-dashboard"></span> Dashboard
-            </div>
+            <a href="company.php" class="w3-text-black" >
+                <div class="w3-padding-large w3-hover-grey">
+                    <span class="glyphicon glyphicon-dashboard w3-margin-right"></span> Dashboard
+                </div>
+            </a>
             <a href="company.php?detail=create_request" class="w3-text-black" >
                 <div class="w3-padding-large w3-hover-grey">
                     <i class="far fa-file-alt w3-margin-right"></i> Tạo phiếu
