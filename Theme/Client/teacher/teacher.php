@@ -42,6 +42,15 @@ if(!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL){
                 if($detail == 'detail_request'){
                     include('list_detail.php');
                 }
+                if($detail == 'assignment'){
+                    include('assignment.php');
+                }
+                if($detail == 'list_student_register'){
+                    include('list_student_register.php');
+                }
+                if($detail == 'list_student_unassigned'){
+                    include('list_student_unassigned.php');
+                }
             }else{
                 include('layout/content.php');
             }
