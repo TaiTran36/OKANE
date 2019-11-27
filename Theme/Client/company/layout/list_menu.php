@@ -20,11 +20,7 @@
                     <i class="far fa-file-alt w3-margin-right"></i> Tạo phiếu
                 </div>
             </a>
-            <a href="javascript:void(0)" class="w3-text-black" onclick="document.getElementById('assignment').style.display='block'">
-                <div class="w3-padding-large w3-hover-grey">
-                    <span class="glyphicon glyphicon-list w3-margin-right"></span>Bảng phân công
-                </div>
-            </a>
+            
         </div>
     </div>
     <div class="w3-col w3-padding " style="width:75%">fasfd</div>
