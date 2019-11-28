@@ -50,6 +50,9 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
             if($detail == 'create_request'){
                 include('create_request.php');
             }
+            if($detail == 'detail_request_asignment'){
+                include('detail_request_asignment.php');
+            }
         }else{
             include('layout/content.php');
         }
