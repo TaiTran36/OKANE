@@ -4,16 +4,15 @@
             <div class="w3-col w3-padding w3-green " style="width:20%"><a href="#" class="w3-bar-item w3-button w3-hide-small w3-large w3-hover-none w3-hover-text-white"><b>OKANE - Student</b></a></div>
             <div class="w3-col w3-padding" style="width:80%">
                 <div class="w3-left w3-padding">
-                    <span class="glyphicon glyphicon-home w3-text-white"></span><a href="index.php" class="w3-text-white"><span class="w3-margin-left">HOMEPAGE</span></a>
+                    <span class="glyphicon glyphicon-home w3-text-white"></span><a href="../index.php" class="w3-text-white"><span class="w3-margin-left">HOMEPAGE</span></a>
                 </div>
-                <div class="w3-right w3-third ">
+                <div class="w3-right w3-half ">
                     <div class="w3-quarter w3-padding">
                         <i class="fas fa-bell w3-text-white"></i>
                     </div>
                     <div class="w3-threequarter">
-
                         <div class="w3-quarter ">
-                            <img src="../../img/slide/Slide3-0.jpg" style="width:65%;height: 40px"
+                            <img src="../../../img/slide/user.png" style="width:45%;height: 40px"
                                  class=" w3-right w3-round-xxlarge">
                         </div>
                         <div class="w3-threequarter w3-padding w3-text-white"><?php echo $_SESSION['full_name'] ?>

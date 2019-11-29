@@ -4,32 +4,14 @@ include $_SERVER["DOCUMENT_ROOT"] . "/okane/server/Connection.php";
 $conn    = new Connection();
 $connect = $conn->Conn();
 
-$student_register_sql = $connect->query("SELECT intern_students.* FROM intern_students ");
+$assignment_sql = "SELECT  intern_students.*
+FROM intern_students
+WHERE NOT EXISTS (
+SELECT DISTINCT intern_organization_request_assignment.student_id
+    FROM intern_organization_request_assignment
+    WHERE intern_organization_request_assignment.student_id = intern_students.id)";
+$assignment_sql = $conn->getData($assignment);
 
-$assignment_sql = $connect->query("SELECT DISTINCT intern_students.id
-FROM (intern_organization_request_assignment
-INNER JOIN intern_students ON intern_organization_request_assignment.student_id = intern_students.id) ");
-?>
-<?php
-$student_register = array();
-if (mysqli_num_rows($student_register_sql) > 0) {
-    while ($row = mysqli_fetch_assoc($student_register_sql)) {
-        array_push($student_register,$row);
-    }
-}
-
-$assignment = array();
-if (mysqli_num_rows($assignment_sql) > 0) {
-    while ($row = mysqli_fetch_assoc($assignment_sql)) {
-        array_push($assignment,$row['id']);
-    }
-}
-$student_unassigned = array();
-foreach ($student_register as $s){
-    if(!in_array($s['id'],$assignment)){
-        array_push($student_unassigned,$s);
-    }
-}
 ?>
 <div class="w3-padding  w3-margin w3-round w3-card w3-display-container unassigned" style="height:400px">
     <h3 class="w3-center">DANH SÁCH SINH VIÊN CHƯA ĐƯỢC PHÂN CÔNG </h3>
@@ -51,8 +33,8 @@ foreach ($student_register as $s){
                 <th>Tác vụ</th>
             </tr>
             </thead>
-            <?php if (count($student_unassigned) > 0):?>
-                <?php foreach ($student_unassigned as $s):?>
+            <?php if ($assignment->num_rows > 0):?>
+                <?php foreach ($assignment as $s):?>
                     <tr>
                         <td><?php echo ($s['student_code']); ?></td>
                         <td><?php echo $s['full_name'] ?></td>

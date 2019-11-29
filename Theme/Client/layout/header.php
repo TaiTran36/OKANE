@@ -20,14 +20,15 @@ session_start();
 		  		<div class="w3-col w3-padding w3-right" style="width:30%">
 		    		<?php 
 			    		if(isset($_SESSION['full_name']) && $_SESSION['full_name'] != NULL){
-			    	
+			    		    $name = explode(" ",$_SESSION['full_name']);
+			    		    $name = $name[count($name)-2].' '.$name[count($name)-1];
 			    			if(isset($_SESSION['user'])){
 			    			 	$url = $_SESSION['user'].'/'.$_SESSION['user'].'.php';
 			    			}
 			    			echo '<div class="w3-col w3-margin-right " style="width:45%">',
-			    			'<div class="w3-border w3-round-xxlarge w3-hover-shadow">',
+			    			'<div class="w3-border w3-round-xxlarge w3-hover-shadow w3-center">',
 			    			"<span class='btn_login list_menu w3-button w3-large w3-hide-small w3-hover-none w3-text-white' style='width:auto;'>"
-			    			.$_SESSION['full_name'].
+			    			.$name.
 			    			'</span>',
 			    			'</div>',
 			    			'</div>',

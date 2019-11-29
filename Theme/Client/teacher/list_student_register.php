@@ -4,36 +4,17 @@ include $_SERVER["DOCUMENT_ROOT"] . "/okane/server/Connection.php";
 $conn    = new Connection();
 $connect = $conn->Conn();
 
-$student_register_sql = $connect->query("SELECT intern_students.*
-FROM (intern_student_register
-INNER JOIN intern_students ON intern_student_register.student_id = intern_students.id)
-WHERE intern_student_register.request_id = '$id'");
-
-$assignment_sql = $connect->query("SELECT DISTINCT intern_students.id
-FROM (intern_organization_request_assignment
-INNER JOIN intern_students ON intern_organization_request_assignment.student_id = intern_students.id) ");
+$student_register_sql = "SELECT intern_student_register.*, intern_students.*
+FROM intern_student_register
+INNER JOIN intern_students ON intern_students.id = intern_student_register.student_id
+WHERE NOT EXISTS (
+SELECT intern_organization_request_assignment.student_id
+    FROM intern_organization_request_assignment
+    WHERE intern_organization_request_assignment.student_id = intern_student_register.student_id AND intern_organization_request_assignment.organization_request_id = '$id'
+)";
+$student_register = $conn->getData($student_register_sql);
 ?>
-<?php
-    $student_register = array();
-if (mysqli_num_rows($student_register_sql) > 0) {
-    while ($row = mysqli_fetch_assoc($student_register_sql)) {
-        array_push($student_register,$row);
-    }
-}
 
-$assignment = array();
-if (mysqli_num_rows($assignment_sql) > 0) {
-    while ($row = mysqli_fetch_assoc($assignment_sql)) {
-        array_push($assignment,$row['id']);
-    }
-}
-$student_assignment = array();
-foreach ($student_register as $s){
-    if(!in_array($s['id'],$assignment)){
-        array_push($student_assignment,$s);
-    }
-}
-?>
 <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:400px">
     <h3 class="w3-center">DANH SÁCH SINH VIÊN ĐĂNG KÍ </h3>
     <h4 class="w3-center">(Chưa được phân công)</h4>
@@ -55,8 +36,8 @@ foreach ($student_register as $s){
                 <th>Tác vụ</th>
             </tr>
             </thead>
-            <?php if (count($student_assignment) > 0):?>
-                <?php foreach ($student_assignment as $s):?>
+            <?php if ($student_register->num_rows > 0):?>
+                <?php foreach ($student_register as $s):?>
                     <tr>
                         <td><?php echo ($s['student_code']); ?></td>
                         <td><?php echo $s['full_name'] ?></td>

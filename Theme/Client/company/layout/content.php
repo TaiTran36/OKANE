@@ -40,6 +40,10 @@ $list = $conn->getData($list_request);
                 <p>Số lượng tuyển: <?php echo $item['organ_request_amount'] ?></p>
                 <p>Số lượng sinh viên đã đăng kí: <?php echo $item['count_stu_res'] ?> </p>
                 <p>Ngày đăng: <?php echo date_format(new DateTime($item['organ_request_date_submitted']),"d/m/Y"); ?></p>
+                <?php if($item['organ_request_status'] == 3000 || $item['organ_request_status'] == 4000):?>
+                    <p>Danh sách phân công:  <span class="w3-badge w3-padding w3-small w3-indigo w3-margin-left"><a
+                                    href="company.php?detail=detail_request_asignment&id=<?php echo $item['organ_request_id'] ?>" class="w3-text-white">Xem</a></span></p>
+                <?php endif;?>
             </div>
 
         </div>
