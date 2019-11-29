@@ -57,7 +57,6 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
             include('layout/content.php');
         }
         ?>
-        <?php include('assignment.php') ?>
     </div>
 </section>
 <script>

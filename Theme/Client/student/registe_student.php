@@ -33,8 +33,7 @@ $list = $conn->getData($list_request);
         <input type="hidden" class="organ_request_id" name="organ_request_id" value="<?php echo $id ?>">
         <input type="hidden" class="current_date" name="date" value="<?php echo $current_date ?>">
         <div class="w3-display-bottommiddle">
-            <a  href="student.php" class="w3-btn w3-green w3-margin-bottom  btn_detail" >Trở về
-            </a>
+            <a href="student.php" class="w3-btn w3-green  w3-margin-bottom  btn_detail" >Trở về</a>
             <button  type="submit" class="w3-btn w3-green w3-margin-bottom btn_detail" name="regsite_request_student" >Đăng kí
             </button>
         </div>
@@ -48,28 +47,4 @@ $list = $conn->getData($list_request);
         var height = $(this).height() +$('.des').height()+$('.list_ability').height();
         $(this).height(height);
     }).trigger('resize');
-
-    // $('#form_registe_request_stu').submit(function(e){
-    //     e.preventDefault();
-    //     var stu_id = $('.stu_id').val();
-    //     var organ_request_id = $('.organ_request_id').val();
-    //     var date = $('.current_date').val();
-    //     var url = '../../server/regsite_student/action_regsite_request_student.php';
-    //     $.ajax({
-    //         url : url,
-    //         type:'POST',
-    //         data:{
-    //             regsite_request_student:'regsite_request_student',
-    //             stu_id:stu_id,
-    //             organ_request_id: organ_request_id,
-    //             date: date
-    //         },
-    //         success: function(response) {
-    //             if(response=="success")
-    //             {
-    //                 window.location.href = red;
-    //             }
-    //         }
-    //     });
-    // });
 </script>

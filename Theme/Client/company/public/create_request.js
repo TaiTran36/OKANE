@@ -39,6 +39,7 @@ $( document ).ready(function() {
                 var ability_required = $('.data_ability').attr('data_ability_required');
                 var ability_note = $('.select_note').val();
                 var ability_name = $('.data_ability').attr('data_ability_name');
+                alert(ability_required);
                 var abi= "<li class='w3-margin abilities' data-id = "+count+">\n" +
                     "<div class='w3-col' style='width:20%'><input class='check' name='check' value='"+count+"' type='checkbox'  ></div>\n"+
                     "<div class='w3-col' style='width:30%'><span class='w3-margin w3-green w3-padding '>"+ability_name+"</span></div>\n" +

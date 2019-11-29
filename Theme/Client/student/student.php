@@ -44,6 +44,9 @@ if (!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL) {
                 if($detail == 'registe'){
                     include('registe_student.php');
                 }
+                if($detail == 'assignment'){
+                    include('assignment.php');
+                }
             }else{
                 include('layout/content.php');
             }

@@ -17,9 +17,11 @@ $list_request = "SELECT intern_organization_requests.*, intern_organization_prof
                     LEFT JOIN intern_student_register ON intern_organization_requests.organ_request_id = intern_student_register.request_id)
                     WHERE intern_organization_requests.organ_request_status = '3000' OR intern_organization_requests.organ_request_status = '4000'
                     GROUP BY intern_organization_requests.organ_request_id
-                    ORDER BY intern_organization_requests.organ_request_status ASC, intern_organization_requests.organ_request_date_submitted DESC  
+                    ORDER BY intern_organization_requests.organ_request_status ASC, intern_organization_requests.organ_request_date_submitted DESC
                     ";
+
 $list = $conn->getData($list_request);
+
 ?>
 <?php foreach ($list as $item) : ?>
     <div class="w3-padding  w3-margin w3-round w3-card w3-display-container" style="height:350px">
@@ -28,9 +30,6 @@ $list = $conn->getData($list_request);
             <div class="w3-third w3-padding">
                 <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $item["logo"] ).'" class="w3-image w3-border w3-hover-shadow"
                    style="height: 150px;width: 100%;">';?>
-                <div class="w3-center w3-margin-top">
-
-                </div>
             </div>
             <div class="w3-twothird w3-padding">
                 <p><?php echo $item['organization_name'] ?></p>
@@ -41,18 +40,17 @@ $list = $conn->getData($list_request);
             </div>
 
         </div>
-        <?php if($item['organ_request_status'] == 3000):?>
-            <a href="student.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
-            </a>
+        <?php if($item['organ_request_status'] == 3000 ):?>
+            <div class="w3-display-topright w3-panel w3-green w3-margin w3-round w3-padding">
+                Trong thời hạn
+            </div>
         <?php else :?>
             <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
                 Hết hạn
             </div>
         <?php endif ?>
+        <a href="student.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
+        </a>
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
     </div>
 <?php endforeach; ?>
-
-<script>
-
-</script>
