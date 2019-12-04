@@ -10,7 +10,7 @@ WHERE NOT EXISTS (
 SELECT DISTINCT intern_organization_request_assignment.student_id
     FROM intern_organization_request_assignment
     WHERE intern_organization_request_assignment.student_id = intern_students.id)";
-$assignment_sql = $conn->getData($assignment);
+$assignment = $conn->getData($assignment_sql);
 
 ?>
 <div class="w3-padding  w3-margin w3-round w3-card w3-display-container unassigned" style="height:400px">
