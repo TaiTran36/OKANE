@@ -54,7 +54,10 @@ $list_ability = $conn->getData($list_ability);
         </div>
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
         <?php if($item['organ_request_status'] == 2000): ?>
-            <a href="javascript:void(0)" class="w3-btn w3-blue w3-display-bottommiddle w3-margin w3-round btn-approve" value="<?php  echo $item['organ_request_id'] ?>">Duyệt</a>
+            <div class="w3-display-bottommiddle">
+                <a href="javascript:void(0)" class="w3-btn w3-blue  w3-margin w3-round btn-approve" value="<?php  echo $item['organ_request_id'] ?>">Duyệt</a>
+                <a href="javascript:void(0)" class="w3-btn w3-red  w3-margin w3-round btn-refuse" value="<?php  echo $item['organ_request_id'] ?>">Loại</a>
+            </div>
         <?php else: ?>
             <a href="teacher.php?detail=assignment&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-topright w3-margin btn_detail w3-round" >Danh sách phân công
             </a>
@@ -70,7 +73,7 @@ $list_ability = $conn->getData($list_ability);
         e.preventDefault();
         var url = '../../../server/teacher_assignment/approve_request.php';
         var request_id = $(this).attr('value');
-        if(confirm("Bạn chắc chắn đã phân công sinh viên vào phiếu tuyển dụng")){
+        if(confirm("Bạn chắc chắn muốn duyệt phiếu tuyển dụng")){
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -83,6 +86,29 @@ $list_ability = $conn->getData($list_ability);
                     if (response == "success") {
                         window.location.href = "teacher.php";
                         alert("Xét duyệt phiếu tuyển dụng thành công!");
+                    }
+                }
+            });
+        }
+
+    });
+    $('.btn-refuse').click(function (e) {
+        e.preventDefault();
+        var url = '../../../server/teacher_assignment/refuse_request.php';
+        var request_id = $(this).attr('value');
+        if(confirm("Bạn chắc chắn muốn loại phiếu tuyển dụng")){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    refuse_request: 'refuse_request',
+                    status: '5000',
+                    request_id:request_id
+                },
+                success: function (response) {
+                    if (response == "success") {
+                        window.location.href = "teacher.php";
+                        alert("Bạn đã loại phiếu tuyển dụng!");
                     }
                 }
             });
