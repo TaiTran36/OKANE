@@ -21,9 +21,11 @@ FROM (intern_organization_request_abilities
 INNER JOIN intern_ability_dictionary ON intern_ability_dictionary.id = intern_organization_request_abilities.ability_id) 
 WHERE intern_organization_request_abilities.organization_request_id = $id";
 $list_ability = $conn->getData($list_ability);
+$abilities = "SELECT * FROM intern_ability_dictionary";
+$abilities = $conn->getData($abilities);
 ?>
 <?php foreach ($list as $item) : ?>
-    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:400px">
+    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:500px">
         <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
         <div class="w3-padding">
             <div class="w3-third w3-padding">
@@ -50,6 +52,31 @@ $list_ability = $conn->getData($list_ability);
                         <br>
                     <?php endforeach; ?>
                 </ul>
+                <br>
+                <br>
+                <div class=" w3-margin-top abili" style="height: 70px">
+                    <input type="hidden" class="data_ability" data-id="<?php echo $id?>" data-id_ability="" data_ability_required="" data_ability_name="">
+                    <div class="w3-col w3-margin-right" style="width: 30%">
+                        <select class="w3-select select_name" name="select_ability">
+                            <option value="" disabled selected>Chọn tên năng lực</option>
+                            <?php foreach ($abilities as $ability):?>
+                                <option value="<?php echo $ability['id']?>" data-name="<?php echo $ability['ability_type']?>" data-id="<?php echo $ability['ability_name']?>"><?php echo $ability['ability_name']?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
+                    <div class="w3-col w3-margin-right" style="width: 20%">
+                        <select class="w3-select select_rank" name="option">
+                        </select>
+                    </div>
+                    <div class="w3-col w3-margin-right" style="width: 30%">
+                        <input type="text" class="w3-input select_note" placeholder="Lựa chọn kinh nghiệm">
+                    </div>
+                    <div class="w3-col" style="width: 10%">
+                                <span class="w3-margin w3-padding w3-round-large w3-hover-shadow w3-green add"><a
+                                            href="javascript:void(0)" class="w3-text-white">Thêm</a></span>
+                    </div>
+                    <script type="text/javascript" src="public/add_ability.js"></script>
+                </div>
             </div>
         </div>
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
@@ -59,6 +86,11 @@ $list_ability = $conn->getData($list_ability);
                 <a href="javascript:void(0)" class="w3-btn w3-red  w3-margin w3-round btn-refuse" value="<?php  echo $item['organ_request_id'] ?>">Loại</a>
             </div>
         <?php else: ?>
+            <?php if($item['organ_request_status'] == 5000): ?>
+                <div class="w3-display-bottommiddle">
+                    <a href="javascript:void(0)" class="w3-btn w3-blue  w3-margin w3-round btn-approve-again" value="<?php  echo $item['organ_request_id'] ?>">Duyệt lại</a>
+                </div>
+            <?php endif; ?>
             <a href="teacher.php?detail=assignment&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-topright w3-margin btn_detail w3-round" >Danh sách phân công
             </a>
         <?php endif; ?>
@@ -115,4 +147,27 @@ $list_ability = $conn->getData($list_ability);
         }
 
     })
+    $('.btn-approve-again').click(function (e) {
+        e.preventDefault();
+        var url = '../../../server/teacher_assignment/approve_request_again.php';
+        var request_id = $(this).attr('value');
+        if(confirm("Bạn chắc chắn muốn duyệt lại phiếu tuyển dụng")){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    approve_request_again: 'approve_request_again',
+                    status: '2000',
+                    request_id:request_id
+                },
+                success: function (response) {
+                    if (response == "success") {
+                        window.location.href = "teacher.php";
+                        alert("Xét duyệt phiếu tuyển dụng thành công!");
+                    }
+                }
+            });
+        }
+
+    });
 </script>

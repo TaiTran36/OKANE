@@ -28,15 +28,17 @@ $result        = $conn->getData($assignment);
                     <th>Lớp</th>
                     <th>Giới tính</th>
                     <th>Ngày sinh</th>
+                    <th>Thao tác</th>
                 </tr>
                 </thead>
                 <?php foreach ($result as $item):?>
-                    <tr>
+                    <tr data-id="<?php echo $item['student_id']?>">
                         <td><?php echo $item['student_code']?></td>
                         <td><?php echo $item['full_name']?></td>
                         <td><?php echo $item['class_name']?></td>
                         <td><?php echo $item['gender']?></td>
                         <td><?php echo date_format(new DateTime($item['date_of_birth']),"d/m/Y");?></td>
+                        <td><a href="javascript:void(0)" class="w3-btn w3-red delete">Xoá</a></td>
                     </tr>
                 <?php endforeach;?>
             </table>
@@ -44,3 +46,4 @@ $result        = $conn->getData($assignment);
         <?php endif;?>
     </div>
 </div>
+<script type="text/javascript" src="public/assignment_action_delete.js"></script>
