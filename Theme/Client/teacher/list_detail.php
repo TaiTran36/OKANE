@@ -21,6 +21,8 @@ FROM (intern_organization_request_abilities
 INNER JOIN intern_ability_dictionary ON intern_ability_dictionary.id = intern_organization_request_abilities.ability_id) 
 WHERE intern_organization_request_abilities.organization_request_id = $id";
 $list_ability = $conn->getData($list_ability);
+$abilities = "SELECT * FROM intern_ability_dictionary";
+$abilities = $conn->getData($abilities);
 ?>
 <?php foreach ($list as $item) : ?>
     <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:400px">
@@ -42,8 +44,8 @@ $list_ability = $conn->getData($list_ability);
                 <ul class="list_ability">
                     <?php foreach ($list_ability as $item_ability) : ?>
                         <li class="w3-margin-top w3-margin-bottom abilities" data-id="<?php echo $item_ability['id']?>" >
-                            <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
-                            <div class='w3-col' style='width:20%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
+                            <div class='w3-col' style='width:35%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
+                            <div class='w3-col' style='width:25%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
                             <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span></div>
                         </li>
                         <br>
@@ -59,6 +61,11 @@ $list_ability = $conn->getData($list_ability);
                 <a href="javascript:void(0)" class="w3-btn w3-red  w3-margin w3-round btn-refuse" value="<?php  echo $item['organ_request_id'] ?>">Loại</a>
             </div>
         <?php else: ?>
+            <?php if($item['organ_request_status'] == 5000): ?>
+                <div class="w3-display-bottommiddle">
+                    <a href="javascript:void(0)" class="w3-btn w3-blue  w3-margin w3-round btn-approve-again" value="<?php  echo $item['organ_request_id'] ?>">Duyệt lại</a>
+                </div>
+            <?php endif; ?>
             <a href="teacher.php?detail=assignment&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-topright w3-margin btn_detail w3-round" >Danh sách phân công
             </a>
         <?php endif; ?>
@@ -115,4 +122,27 @@ $list_ability = $conn->getData($list_ability);
         }
 
     })
+    $('.btn-approve-again').click(function (e) {
+        e.preventDefault();
+        var url = '../../../server/teacher_assignment/approve_request_again.php';
+        var request_id = $(this).attr('value');
+        if(confirm("Bạn chắc chắn muốn duyệt lại phiếu tuyển dụng")){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    approve_request_again: 'approve_request_again',
+                    status: '2000',
+                    request_id:request_id
+                },
+                success: function (response) {
+                    if (response == "success") {
+                        window.location.href = "teacher.php";
+                        alert("Xét duyệt phiếu tuyển dụng thành công!");
+                    }
+                }
+            });
+        }
+
+    });
 </script>
