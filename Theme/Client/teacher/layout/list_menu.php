@@ -13,6 +13,11 @@
                     <span class="glyphicon glyphicon-dashboard w3-margin-right"></span> Dashboard
                 </div>
             </a>
+            <a href="teacher.php?detail=list_ability" class="w3-text-black" >
+                <div class="w3-padding-large w3-hover-grey">
+                    <span class="glyphicon glyphicon-book w3-margin-right"></span>Từ điển năng lực
+                </div>
+            </a>
         </div>
     </div>
 </div>
