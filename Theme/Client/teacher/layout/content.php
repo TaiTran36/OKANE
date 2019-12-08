@@ -49,6 +49,11 @@ $list = $conn->getData($list_request);
                 Chờ xét duyệt
             </div>
         <?php endif ?>
+        <?php if ($item['organ_request_status'] == 3000): ?>
+            <div class="w3-display-topright w3-panel w3-blue w3-margin w3-round w3-padding">
+                Đã xét duyệt
+            </div>
+        <?php endif ?>
         <?php if ($item['organ_request_status'] == 4000): ?>
             <div class="w3-display-topright w3-panel w3-indigo w3-margin w3-round w3-padding">
                 Hết hạn

@@ -31,6 +31,9 @@ $check = $conn->getData($check_register);
 <?php foreach ($list as $item) : ?>
 <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:350px">
     <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
+    <?php if($item['organ_request_status'] == 3000) :?>
+        <button  class="w3-btn w3-tiny w3-pale-blue w3-margin w3-display-topright btn_detail" style="margin-right: 295px!important; margin-top: 25px!important;">Đã được duyệt</button>
+    <?php endif;?>
     <div class="w3-padding">
         <div class="w3-third w3-padding">
             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $item["logo"] ).'" class="w3-image w3-border w3-hover-shadow"
@@ -60,6 +63,7 @@ $check = $conn->getData($check_register);
     <?php if ($check->num_rows > 0):?>
         <button  class="w3-btn w3-red w3-margin w3-display-topright btn_detail"  >Đã đăng kí</button>
     <?php else:?>
+
         <a href="student.php?detail=registe&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail" >Đăng kí
         </a>
     <?php endif;?>
