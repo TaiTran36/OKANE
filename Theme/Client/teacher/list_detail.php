@@ -25,7 +25,7 @@ $abilities = "SELECT * FROM intern_ability_dictionary";
 $abilities = $conn->getData($abilities);
 ?>
 <?php foreach ($list as $item) : ?>
-    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:500px">
+    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:400px">
         <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
         <div class="w3-padding">
             <div class="w3-third w3-padding">
@@ -44,39 +44,14 @@ $abilities = $conn->getData($abilities);
                 <ul class="list_ability">
                     <?php foreach ($list_ability as $item_ability) : ?>
                         <li class="w3-margin-top w3-margin-bottom abilities" data-id="<?php echo $item_ability['id']?>" >
-                            <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
-                            <div class='w3-col' style='width:20%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
+                            <div class='w3-col' style='width:35%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
+                            <div class='w3-col' style='width:25%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
                             <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span></div>
                         </li>
                         <br>
                         <br>
                     <?php endforeach; ?>
                 </ul>
-                <br>
-                <br>
-                <div class=" w3-margin-top abili" style="height: 70px">
-                    <input type="hidden" class="data_ability" data-id="<?php echo $id?>" data-id_ability="" data_ability_required="" data_ability_name="">
-                    <div class="w3-col w3-margin-right" style="width: 30%">
-                        <select class="w3-select select_name" name="select_ability">
-                            <option value="" disabled selected>Chọn tên năng lực</option>
-                            <?php foreach ($abilities as $ability):?>
-                                <option value="<?php echo $ability['id']?>" data-name="<?php echo $ability['ability_type']?>" data-id="<?php echo $ability['ability_name']?>"><?php echo $ability['ability_name']?></option>
-                            <?php endforeach;?>
-                        </select>
-                    </div>
-                    <div class="w3-col w3-margin-right" style="width: 20%">
-                        <select class="w3-select select_rank" name="option">
-                        </select>
-                    </div>
-                    <div class="w3-col w3-margin-right" style="width: 30%">
-                        <input type="text" class="w3-input select_note" placeholder="Lựa chọn kinh nghiệm">
-                    </div>
-                    <div class="w3-col" style="width: 10%">
-                                <span class="w3-margin w3-padding w3-round-large w3-hover-shadow w3-green add"><a
-                                            href="javascript:void(0)" class="w3-text-white">Thêm</a></span>
-                    </div>
-                    <script type="text/javascript" src="public/add_ability.js"></script>
-                </div>
             </div>
         </div>
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
