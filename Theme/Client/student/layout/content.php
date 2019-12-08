@@ -22,6 +22,12 @@ $list_request = "SELECT intern_organization_requests.*, intern_organization_prof
 
 $list = $conn->getData($list_request);
 
+//$id= isset($_GET['organ_request_id']) ? $_GET['organ_request_id'] : "";
+
+$id_student = $_SESSION['id_student'];
+
+$list_register = "SELECT * FROM intern_student_register";
+$register = $conn->getData($list_register);
 ?>
 <?php foreach ($list as $item) : ?>
     <div class="w3-padding  w3-margin w3-round w3-card w3-display-container" style="height:350px">
@@ -44,10 +50,22 @@ $list = $conn->getData($list_request);
             <div class="w3-display-topright w3-panel w3-green w3-margin w3-round w3-padding">
                 Trong thời hạn
             </div>
+
+            <?php foreach ($register as $regis) : ?>
+                <?php if($item['organ_request_id'] == $regis['request_id'] && $regis['student_id'] == $id_student) :?>
+                    <button  class="w3-btn w3-red w3-margin w3-display-topright btn_detail" style="margin-right: 150px!important">Đã đăng kí</button>
+                <?php endif;?>
+            <?php endforeach; ?>
         <?php else :?>
             <div class="w3-display-topright w3-panel w3-red w3-margin w3-round w3-padding">
                 Hết hạn
             </div>
+
+            <?php foreach ($register as $regis) : ?>
+                <?php if($item['organ_request_id'] == $regis['request_id'] && $regis['student_id'] == $id_student) :?>
+                    <button  class="w3-btn w3-red w3-margin w3-display-topright btn_detail" style="margin-right: 110px!important">Đã đăng kí</button>
+                <?php endif;?>
+            <?php endforeach; ?>
         <?php endif ?>
         <a href="student.php?detail=detail_request&id=<?php echo $item['organ_request_id'] ?>" class="w3-btn w3-green w3-display-bottomright w3-margin btn_detail w3-round" >Xem chi tiết
         </a>
