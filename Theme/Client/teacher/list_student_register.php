@@ -5,13 +5,11 @@ $conn    = new Connection();
 $connect = $conn->Conn();
 
 $student_register_sql = "SELECT intern_student_register.*, intern_students.*
-FROM intern_student_register
-INNER JOIN intern_students ON intern_students.id = intern_student_register.student_id
-WHERE NOT EXISTS (
-SELECT intern_organization_request_assignment.student_id
-    FROM intern_organization_request_assignment
-    WHERE intern_organization_request_assignment.student_id = intern_student_register.student_id AND intern_organization_request_assignment.organization_request_id = '$id'
-)";
+FROM (intern_student_register
+INNER JOIN intern_students ON intern_students.id = intern_student_register.student_id)
+WHERE intern_student_register.request_id = '$id' AND NOT EXISTS (SELECT DISTINCT intern_organization_request_assignment.student_id
+FROM intern_organization_request_assignment 
+WHERE intern_organization_request_assignment.student_id = intern_student_register.student_id)";
 $student_register = $conn->getData($student_register_sql);
 ?>
 

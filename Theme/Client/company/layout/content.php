@@ -24,7 +24,7 @@ $list = $conn->getData($list_request);
 ?>
 
 <?php foreach ($list as $item) : ?>
-    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container" style="height:350px">
+    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container res" style="height:400px" data-id="<?php echo $item['organ_request_id'] ?>">
         <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
         <div class="w3-padding" style="height: 180px">
             <div class="w3-third w3-padding">

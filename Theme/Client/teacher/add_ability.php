@@ -10,7 +10,7 @@
                 <form action="../../../server/teacher_assignment/add_ability.php" method="POST">
                     <div class="w3-padding w3-margin-bottom">
                         <label for="">Tên năng lực</label>
-                        <input class="w3-input" type="text" name="ability_name" placeholder="Nhập tên năng lực" value="">
+                        <input class="w3-input" type="text" name="ability_name" placeholder="Nhập tên năng lực" value="" required>
                     </div>
                     <div class="w3-padding w3-margin-bottom">
                         <label for="">Loại năng lực</label>

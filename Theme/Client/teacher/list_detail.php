@@ -44,8 +44,8 @@ $abilities = $conn->getData($abilities);
                 <ul class="list_ability">
                     <?php foreach ($list_ability as $item_ability) : ?>
                         <li class="w3-margin-top w3-margin-bottom abilities" data-id="<?php echo $item_ability['id']?>" >
-                            <div class='w3-col' style='width:35%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
-                            <div class='w3-col' style='width:25%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
+                            <div class='w3-col' style='width:37%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
+                            <div class='w3-col' style='width:23%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
                             <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span></div>
                         </li>
                         <br>

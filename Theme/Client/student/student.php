@@ -22,6 +22,7 @@ if (!isset($_SESSION['full_name']) || $_SESSION['full_name'] == NULL) {
         .w3-menu {position: fixed !important;}
         footer {background-color: #242424}
         a {text-decoration: none !important}
+        li{list-style-type: none}
     </style>
 </head>
 <body>

@@ -22,15 +22,13 @@ $list_request = "SELECT intern_organization_requests.*, intern_organization_prof
 
 $list = $conn->getData($list_request);
 
-//$id= isset($_GET['organ_request_id']) ? $_GET['organ_request_id'] : "";
-
 $id_student = $_SESSION['id_student'];
 
 $list_register = "SELECT * FROM intern_student_register";
 $register = $conn->getData($list_register);
 ?>
 <?php foreach ($list as $item) : ?>
-    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container" style="height:350px">
+    <div class="w3-padding  w3-margin w3-round w3-card w3-display-container res" style="height:350px" data-id="<?php echo $item['organ_request_id'] ?>">
         <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
         <div class="w3-padding" style="height: 180px">
             <div class="w3-third w3-padding">
@@ -72,3 +70,10 @@ $register = $conn->getData($list_register);
         <div class="w3-left w3-padding des" style=""><?php echo $item['description'] ?></div>
     </div>
 <?php endforeach; ?>
+<script>
+    $('div.res').click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        window.location.href="student.php?detail=detail_request&id="+id;
+    })
+</script>

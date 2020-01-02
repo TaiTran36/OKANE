@@ -15,7 +15,7 @@ $result = $conn->getData($abilities);
         <table class="w3-table-all w3-hoverable">
             <thead>
             <tr class="w3-light-grey">
-                <th>Định danh năng lực</th>
+                <th>Mã năng lực</th>
                 <th>Tên năng lực</th>
                 <th>Loại năng lực</th>
                 <th>Mức đánh giá</th>
