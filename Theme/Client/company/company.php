@@ -59,13 +59,5 @@ if(!isset($_SESSION['organization_name']) || $_SESSION['organization_name'] == N
         ?>
     </div>
 </section>
-<script>
-
-    window.onclick = function(event) {
-        if (event.target == assignment) {
-            assignment.style.display = "none";
-        }
-    }
-</script>
 </body>
 </html>

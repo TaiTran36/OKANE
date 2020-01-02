@@ -29,11 +29,8 @@ WHERE intern_student_register.request_id = '$id' AND intern_students.id = '$id_s
 $check = $conn->getData($check_register);
 ?>
 <?php foreach ($list as $item) : ?>
-<div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:350px">
+<div class="w3-padding  w3-margin w3-round w3-card w3-display-container request" style="height:400px">
     <h3 class="w3-center">PHIẾU TUYỂN DỤNG</h3>
-    <?php if($item['organ_request_status'] == 3000) :?>
-        <button  class="w3-btn w3-tiny w3-pale-blue w3-margin w3-display-topright btn_detail" style="margin-right: 295px!important; margin-top: 25px!important;">Đã được duyệt</button>
-    <?php endif;?>
     <div class="w3-padding">
         <div class="w3-third w3-padding">
             <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $item["logo"] ).'" class="w3-image w3-border w3-hover-shadow"
@@ -51,10 +48,12 @@ $check = $conn->getData($check_register);
             <ul class="list_ability">
                 <?php foreach ($list_ability as $item_ability) : ?>
                     <li class="w3-margin-top w3-margin-bottom abilities"  >
-                        <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
-                        <div class='w3-col' style='width:20%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
+                        <div class='w3-col' style='width:37%'><span class="w3-margin-right w3-green w3-padding"><?php echo $item_ability['ability_name'] ?></span></div>
+                        <div class='w3-col' style='width:23%'><span class="w3-margin-right w3-padding w3-khaki">Mức đạt: <?php echo $item_ability['ability_required']?></span></div>
                         <div class='w3-col' style='width:40%'><span class="w3-margin-right w3-padding w3-pale-yellow"><?php echo $item_ability['note']?></span></div>
                     </li>
+                    <br>
+                    <br>
                 <?php endforeach; ?>
             </ul>
         </div>

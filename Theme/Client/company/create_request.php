@@ -15,11 +15,11 @@ $abilities = $conn->getData($abilities);
                     <input type="hidden" class="organ_id" name="organization_id" value="<?php echo $_SESSION['organ_id']?>">
                     <p class="w3-xlarge"><b></b></p>
                     <label class="w3-large">Tuyển vị trí: </label>
-                    <input class="w3-input organ_request_position" type="text" name="organ_request_position" value=""><br/>
+                    <input class="w3-input organ_request_position" type="text" name="organ_request_position" value="" placeholder="Thực tập sinh" required><br/>
                     <label class="w3-large">Số lượng tuyển: </label>
-                    <input class="w3-input organ_request_amount" type="number" name="organ_request_amount" value=""><br/>
+                    <input class="w3-input organ_request_amount" type="number" name="organ_request_amount" value="" required><br/>
                     <label class="w3-large">Mức lương: </label>
-                    <input class="w3-input organ_request_salary" type="text" name="organ_request_salary" value=""><br/>
+                    <input class="w3-input organ_request_salary" type="number" name="organ_request_salary" value=""><br/>
                     <?php
                         $date=getdate(date("U"));
                         $current_date = "$date[mday]-$date[mon]-$date[year]";

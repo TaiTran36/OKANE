@@ -20,12 +20,12 @@ $("select.select_name").change(function(){
             for(var i=0;i<21;i++){
                 if(i==20) select = select.concat(j,"<option class='option' value='"+(i*50-10)+"'>"+(i*50-10)+"</option></br>");
                 else
-                    select = select.concat(j,"<option value='' class='option' value='"+i*50+"'>"+i*50+"</option></br>");
+                    select = select.concat(j,"<option class='option' value='"+i*50+"'>"+i*50+"</option></br>");
             }
         }else{
             var j = "";
             for(var i=2;i<19;i++){
-                select = select.concat(j,"<option value='' class='option' value='"+i*0.5+"'>"+i*0.5+"</option></br>");
+                select = select.concat(j,"<option class='option' value='"+i*0.5+"'>"+i*0.5+"</option></br>");
             }
         }
         $('select.select_rank').append(select);
